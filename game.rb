@@ -21,8 +21,8 @@ end
 #Game Menu class
 class GameMenu
 	def self.initialize
-		puts "1)New game." 
-		puts "2)Load game.(not working)" 
+		puts "1)New Game." 
+		puts "2)About The Game." 
 		puts "3)Exit."
 	end
 
@@ -31,12 +31,16 @@ class GameMenu
 		
 		case option
 		when "1"
-			puts "New Game"
+			puts "Starting New Game"
 			NewGame.initialize
 		when "2"
-			puts "Load Game"
+			puts "About The Game:"
+			puts "Text Adventure Game made by Aleksandr Chernov!"
+			GameMenu.initialize
+			GameMenu.options
 		when "3"
-			puts "Exit game"
+			puts "Exiting Game..."
+			Kernel.exit
 		else
 			puts "Press 1, 2 or 3"
 			GameMenu.options
@@ -56,8 +60,23 @@ class NewGame
 	end
 end	
 
+#Game Screen class
+class GameScreen
+	def self.initialize
+		file = File.open "graphics.txt"
+		1.times{ file.gets.chomp}
+		p $_
+		2.times{ file.gets.chomp}
+		p $_
+		3.times{ file.gets.chomp}
+		p $_
+		4.times{ file.gets.chomp}
+		p $_
+		file.close
+	end
+end
 puts "Welcome to Ruby Text Adventure! v" + current_version.to_s
-load "graphics.rb"
+GameScreen.initialize
 GameMenu.initialize
 GameMenu.options
 
