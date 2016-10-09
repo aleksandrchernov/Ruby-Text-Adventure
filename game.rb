@@ -57,6 +57,8 @@ class NewGame
 		playerName = PlayerName.new
 		playerName.set_name(user_input_playerName)
 		puts "Good luck on your adventure " + playerName.get_name
+		puts "You journey through the woods and encounter your first foe!"
+		LoadBoredElf.initialize
 	end
 end	
 
@@ -73,6 +75,41 @@ class GameScreen
 		4.times{ file.gets.chomp}
 		p $_
 		file.close
+	end
+end
+
+#Bored Elf Class also containing the battle system within
+class LoadBoredElf
+	def self.initialize
+		load "BoredElf.rb"
+		puts "What would you like to do?"
+		LoadBoredElf.options
+	end
+
+		def self.options
+			option = gets.chomp.to_s
+
+			case option
+		when "1"
+			puts "You attack the Bored Elf!"
+			puts "He is too quick to hit!"
+			LoadBoredElf.options
+		when "2"
+			puts "You try to run!"
+			puts "If you try to run you will never hear the end of it from your friends..."
+			LoadBoredElf.options
+		when "3"
+			puts "You start crying."
+			puts "The Bored Elf slaps you and tells you to man up!"
+			LoadBoredElf.options
+		when "4"
+			puts "You cast a fire magic spell on the elf"
+			puts "The Bored Elf catches on fire and dies."
+			#Put the next NPC encounter class in here.
+		else
+			puts "Please press 1,2,3 or 4"
+			LoadBoredElf.options
+		end		
 	end
 end
 puts "Welcome to Ruby Text Adventure! v" + current_version.to_s
